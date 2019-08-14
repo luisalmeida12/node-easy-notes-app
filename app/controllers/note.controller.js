@@ -95,5 +95,23 @@ exports.update = (req, res) => {
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-
+    // Delete a note with the specified noteId in the Request
+    Note.findByIdAndRemove(req.params.noteId)
+    .then(note => {
+        if (!note) {
+            return res.status(404).send({
+                message: "Note not found with the id " + req.params.noteId
+            })
+        }
+        res.send({message: "Note deleted successfully. "});
+    }).catch(err => {
+        if (err.kind === "ObjectId") {
+            return res.status(404).send({
+                message: "Note not found with the id " + req.params.noteId
+            });
+        }
+        return res.status(500).send({
+            message: "Could not delete note with id " + eq.params.noteId
+        });
+    });
 };
