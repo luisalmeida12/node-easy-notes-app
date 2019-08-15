@@ -32,6 +32,8 @@ app.get('/', (req, res) => {
     res.json({ message: "Welcome to Easynotes application. Take notes quickly."});
 });
 
+require('./app/routes/note.routes.js');
+
 // listen for requests
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
