@@ -71,7 +71,7 @@ exports.update = (req, res) => {
 
     // Find note and update it with the request body
     Note.findByIdAndUpdate(req.params.noteId, {
-        title: req.body.title || "Untitle Note",
+        title: req.body.title || "Untitled Note",
         content: req.body.content
     }, {new: true })
     .then(note => {
